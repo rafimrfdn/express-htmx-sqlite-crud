@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Node.js App</title>
+    <!-- Load htmx library -->
+        <script src="./htmx.min.js"></script>
+        <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+</head>
+<body class="mx-auto flex flex-col w-60 items-center">
+    <h1>Welcome to My Node.js App</h1>
+
+        <input  type="text" name="username" placeholder="username" class="border"/>
+        <button 
+            class="bg-green-200"
+            hx-include="[name=username]"
+            hx-trigger="click"
+            hx-post="http://localhost:3000/users"
+            hx-target="#notification"
+            id="saveButton"
+            >Add User</button>
+        <div id="notification"></div>
+
+
+        <h2>list user</h2>
+        <ul class="flex flex-col justify-between bg-blue-300"
+            hx-get="http://localhost:3000/users" 
+            hx-trigger="load, click from:#saveButton"
+        >
+        </ul>
+
+        <h2 id="listuser">daftar user: </h2>
+        <button hx-get="http://localhost:3000/users" hx-swap="innerHTML" hx-target="#listuser">lihat users</button>
+
+
+    <!-- JavaScript to handle update form -->
+    <!--<script>
+        document.addEventListener('htmx:afterSwap', function(event) {
+            if (event.detail.trigger === 'click' && event.detail.target.id.startsWith('editButton')) {
+                const userId = event.detail.target.dataset.userId;
+                const form = `
+                    <form id="editme" hx-get="http://localhost:3000/user/${userId}" hx-swap="outerHTML" hx-target="#updateFormContainer">
+                        <input type="text" name="username" placeholder="New username" class="border"/>
+                        <button type="submit" class="bg-blue-200">Update</button>
+                    </form>
+                `;
+                document.getElementById('updateFormContainer').innerHTML = form;
+            }
+        });
+</script>-->
+</body>
+</html>
