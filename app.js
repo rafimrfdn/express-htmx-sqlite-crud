@@ -83,7 +83,7 @@ app.get('/user/:id', (req, res) => {
       res.status(500).send('Failed to fetch user');
       return console.error(err.message);
     }
-        res.send(`<form method="PUT" id="editme "> 
+        res.send(`<form method="PUT" id="editme" hx-get="http://localhost:3000/users" hx-target="#items-${row.id}"> 
                     <input type="text"  name="username" placeholder="${row.username}" class="border"/>
                     <button 
                         hx-trigger="click"
@@ -110,7 +110,8 @@ app.put('/user/:id', (req, res) => {
       return res.status(500).send('Failed to update user');
     }
     console.log(`User updated with ID: ${id}`);
-    res.sendStatus(200);
+    // res.sendStatus(200);
+    res.send(`User updated with ${username}`);
   });
 });
 
