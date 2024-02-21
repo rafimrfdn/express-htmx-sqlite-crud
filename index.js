@@ -55,14 +55,14 @@ app.get('/users', (req, res) => {
                 ${user.username}
 
                     <button class="bg-yellow-500"
-                        hx-get="http://localhost:3000/user/${user.id}"
+                        hx-get="/user/${user.id}"
                         hx-trigger="click"
                         hx-swap="outerHTML"
                         >Edit ${user.id}
                     </button>
 
                     <button class="bg-red-500"
-                        hx-delete="http://localhost:3000/users/${user.id}" 
+                        hx-delete="/users/${user.id}" 
                         hx-trigger="click"
                         hx-swap="outerHTML"
                         hx-target="#items-${user.id}"
@@ -83,11 +83,11 @@ app.get('/user/:id', (req, res) => {
       res.status(500).send('Failed to fetch user');
       return console.error(err.message);
     }
-        res.send(`<form method="PUT" id="editme" hx-swap="beforeend" hx-get="http://localhost:3000/users" hx-target="#items-${row.id}"> 
+        res.send(`<form method="PUT" id="editme" hx-swap="beforeend" hx-get="/users" hx-target="#items-${row.id}"> 
                     <input type="text"  name="username" placeholder="${row.username}" class="border"/>
                     <button 
                         hx-trigger="click"
-                        hx-put="http://localhost:3000/user/${row.id}" 
+                        hx-put="/user/${row.id}" 
                         hx-include="[name=username]" 
                     >update</button>
                 </form>

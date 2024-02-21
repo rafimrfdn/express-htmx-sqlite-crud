@@ -17,7 +17,7 @@
             class="bg-green-200"
             hx-include="[name=username]"
             hx-trigger="click"
-            hx-post="http://localhost:3000/users"
+            hx-post="/users"
             hx-target="#notification"
             id="saveButton"
             >Add User</button>
@@ -26,7 +26,7 @@
 
         <h2>list user</h2>
         <ul class="flex flex-col justify-between bg-blue-300"
-            hx-get="http://localhost:3000/users" 
+            hx-get="/users" 
             hx-trigger="load, click from:#saveButton"
         >
         </ul>
@@ -34,7 +34,7 @@
 
 
         <h2 id="listuser">daftar user: </h2>
-        <button hx-get="http://localhost:3000/users" hx-swap="innerHTML" hx-target="#listuser">lihat users</button>
+        <button hx-get="/users" hx-swap="innerHTML" hx-target="#listuser">lihat users</button>
 
 </body>
 </html>
