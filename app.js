@@ -83,7 +83,7 @@ app.get('/user/:id', (req, res) => {
       res.status(500).send('Failed to fetch user');
       return console.error(err.message);
     }
-        res.send(`<form method="PUT" id="editme" hx-get="http://localhost:3000/users" hx-target="#items-${row.id}"> 
+        res.send(`<form method="PUT" id="editme" hx-swap="beforeend" hx-get="http://localhost:3000/users" hx-target="#items-${row.id}"> 
                     <input type="text"  name="username" placeholder="${row.username}" class="border"/>
                     <button 
                         hx-trigger="click"
@@ -125,7 +125,8 @@ app.delete('/users/:id', (req, res) => {
       return console.error(err.message);
     }
     console.log(`User deleted with ID: ${id}`);
-    res.send('');
+    // res.send('');
+    res.send(`User with id ${id} deleted`);
   });
 });
 
@@ -133,3 +134,6 @@ app.delete('/users/:id', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
+
+// Export the Express API
+module.exports = app
